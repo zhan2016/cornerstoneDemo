@@ -1,6 +1,6 @@
 {
     "studyList": [
-        {
+{
             "patientName" : "MISTER^MR",
             "patientId" : "832040",
             "studyDate" : "20010108",
@@ -72,6 +72,7 @@
             "numImages" : 2,
             "studyId" : "dermatology"
         },
+        
         {
             "patientName" : "US JPEG",
             "patientId" : "123454321",

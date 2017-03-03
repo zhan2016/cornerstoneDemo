@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- Support for mobile touch devices -->
-  <meta charset="utf-8" name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
 
   <!-- CSS -->
@@ -13,8 +13,6 @@
   <!-- Bootstrap CSS -->
   <link href="lib/bootstrap.min.css" rel="stylesheet">
 
-  <!-- datarangerpicker CSS -->
-  <link href="lib/daterangepicker.css" rel="stylesheet">
   <!-- UI CSS -->
   <link href="lib/jquery-ui.min.css" rel="stylesheet">  
 
@@ -23,15 +21,6 @@
 
   <!-- Cornerstone Demo CSS -->
   <link href="css/cornerstoneDemo.css" rel="stylesheet">
-  <style type="text/css">
-    .querylist {
-      position:relative;
-      top:10px;
-      left:50px;
-    }
-  </style>
-
-
 </head>
 
 <body>
@@ -41,11 +30,11 @@
     <nav class="myNav navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="http://www.medvision.com.cn/cn/solutions.asp?nid=12&s=1">天健影像诊断系统</a>
+          <a class="navbar-brand" href="https://github.com/chafey/cornerstone">Cornerstone</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a id="help" href="#" class="button hidden-xs">软件使用帮助</a></li>
-          <li><a id="about" href="#" class="button hidden-xs">关于</a></li>
+          <li><a id="help" href="#" class="button hidden-xs">Help</a></li>
+          <li><a id="about" href="#" class="button hidden-xs">About</a></li>
         </ul>
       </div>
     </nav>
@@ -61,52 +50,6 @@
       <div id="tabContent" class="tab-content">
         <!-- Study list -->
         <div id="studyList" class="tab-pane active">
-          <div class="querylist">
-            <form  role="form" ID="RequestForm">
-              <div class="form-group">
-                <label class="label-default" for="ID">病人ID</label>
-                <input type="text" name="ID" class="form-inline" id="ID" placeholder="请输入ID">
-                <label class="label-default" for="ImageID">影像号码</label>
-                <input type="text" name="ImageID" class="form-inline" id="ImageID" placeholder="请输入影像号码">
-              </div>
-              <div class="form-group">
-                <label class="label-default" for="name">病人姓名</label>
-                <input type="text" class="form-inline" name="patientName" id="name" placeholder="请输入姓名">
-                <label class="label-default" for="CheckNum">检查号码</label>
-                <input type="text" class="form-inline" name="CheckNum" id="CheckNum" placeholder="请输入检查号码">
-                <label class="label-default" for="dataPick">检查日期</label>
-                <input type="text" class="form-inline" name="dataPick"id="dataPick" placeholder="时间范围">
-              </div>
-              <div class="form-group">
-              <div class="checkbox-inline">
-                <label>
-                  <input type="checkbox" name="CR">CR
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input type="checkbox" name="MR">MR
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input type="checkbox" name="CT">CT
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input type="checkbox" name="DX">DX
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input type="checkbox" name="US">US
-                </label>
-              </div>
-                </div>
-              <button type="button" id= "Submit"class="btn btn-default">查询</button>
-            </form>
-          </div>
           <div class="row">
             <table  class="col-md-12 table table-striped">
               <thead>
@@ -115,7 +58,7 @@
                   <th>Patient ID</th>
                   <th>Study Date</th>
                   <th>Modality</th>
-                  <th>StudyId</th>
+                  <th>Study Description</th>
                   <th># Images</th>
                 </tr>
               </thead>
@@ -151,10 +94,7 @@
 
 <!-- Include Bootstrap js -->
 <script src="lib/bootstrap.min.js"></script>
-<!-- Include moment js -->
-  <script src="lib/moment.min.js"></script>
-  <!-- include datarangepicker js -->
-  <script src="lib/daterangepicker.js" charset="gbk"></script>
+
 <!-- include the cornerstone library -->
 <script src="lib/cornerstone.js"></script>
 
@@ -173,10 +113,6 @@
 <!-- include the dicomParser library -->
 <script src="lib/dicomParser.js"></script>
 
-  <!-- include the jeson to xml library -->
-  <!--<script src="lib/xml2json.min.js"></script>-->
-<!-- include the jeson to xml library -->
-  <script src="lib/jstoxml.js"></script>
 <!-- include cornerstoneDemo.js -->
 <script src="js/setupViewport.js"></script>
 <script src="js/displayThumbnail.js"></script>
@@ -190,132 +126,6 @@
 <script src="js/about.js"></script>
 <script src="js/setupViewportOverlays.js"></script>
 <script src="js/cornerstoneDemo.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-      $('input[name="dataPick"]').daterangepicker(
-              {
-
-                format: 'YYYY/MM/DD',
-                startDate:new Date(),
-                endDate: new Date(),
-                maxDate:new Date(),
-                locale:{
-                  "format":'YYYY/MM/DD',
-                  "applyLabel": '确认',
-                  "cancelLabel": '取消',
-                  "fromLabel": 'From',
-                  "toLabel": 'to',
-                  weekLabel: 'W',
-                  customRangeLabel: '选择时间',
-                  daysOfWeek:["日","一","二","三","四","五","六"],
-                  monthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-                },
-                ranges: {
-                  "今天": [new Date(),new Date()],
-                  "昨天":[new Date((new Date()).valueOf() - 1000*3600*24), new Date((new Date()).valueOf() - 1000*3600*24)],
-                  "过去七天":[new Date((new Date()).valueOf() - 1000*3600*24*7), new Date()]
-                }
-              },
-              function(start, end, label) {
-                //alert('A date range was chosen: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-              }
-      );
-    });
-    /*$("#RequestForm").submit(function() {
-      var formjson = JSON.stringify($('#RequestForm').serializeArray());
-      event.preventDefault();
-      $.ajax({
-        url: 'http://localhost:7999/',
-        processData: false,
-        contentType:"text/plain",
-        type: "POST",  // type should be POST
-        data: formjson, // send the string directly
-        dataType:"text/plain",
-        success: function(response){
-
-          alert("success");
-        },
-        error: function (jqXHR, exception) {
-          var msg = '';
-          if (jqXHR.status === 0) {
-            msg = 'Not connect.\n Verify Network.';
-          } else if (jqXHR.status == 404) {
-            msg = 'Requested page not found. [404]';
-          } else if (jqXHR.status == 500) {
-            msg = 'Internal Server Error [500].';
-          } else if (exception === 'parsererror') {
-            msg = 'Requested JSON parse failed.';
-          } else if (exception === 'timeout') {
-            msg = 'Time out error.';
-          } else if (exception === 'abort') {
-            msg = 'Ajax request aborted.';
-          } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseText;
-          }
-          alert(msg);
-          //$('#post').html(msg);
-        },
-      });
-      return false;
-      /*
-      // We bind the FormData object and the form element
-      var FD  = new FormData(RequestForm);
-      var formjson = JSON.stringify($('#RequestForm').serializeArray());
-      var jstoxml = new
-      var formxml = toXML(formjson,{header: false, indent: '  '});
-       var xmlhttp = new XMLHttpRequest();
-
-      xmlhttp.open("POST","http://localhost:7999/",true);
-      xmlhttp.setRequestHeader('Content-type', 'text/xml');
-      xmlhttp.send(FD);
-      return false;
-
-    });*/
-
-    $("#Submit").click(function(e) {
-      var formjson = JSON.stringify($('#RequestForm').serializeArray());
-      e.preventDefault();
-      $.ajax({
-        url: 'http://192.168.7.98:7999/',
-        processData: false,
-        contentType:"text/plain",
-        type: "POST",  // type should be POST
-        data: formjson, // send the string directly
-        //dataType:"text/plain",
-        success: function(response){
-          //alert(response);
-          ShowStudyList(response);
-          //alert("success");
-        },
-        error: function (jqXHR, exception) {
-          var msg = '';
-          if (jqXHR.status === 0) {
-            msg = 'Not connect.\n Verify Network.';
-          } else if (jqXHR.status == 404) {
-            msg = 'Requested page not found. [404]';
-          } else if (jqXHR.status == 500) {
-            msg = 'Internal Server Error [500].';
-          } else if (exception === 'parsererror') {
-            msg = 'Requested JSON parse failed.';
-          } else if (exception === 'timeout') {
-            msg = 'Time out error.';
-          } else if (exception === 'abort') {
-            msg = 'Ajax request aborted.';
-          } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseText;
-          }
-          alert(msg);
-          //$('#post').html(msg);
-        },
-      });
-      return false;
-    });
-
-
-
-
-  </script>
 
 </body>
 </html>

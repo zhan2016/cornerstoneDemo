@@ -5,7 +5,7 @@ function loadStudy(studyViewer, viewportModel, study) {
     var Selectstudyid =  JSON.stringify([{"name":"StudyID", "value":study.studyId}]);
     //e.preventDefault();
     $.ajax({
-        url: 'http://192.168.7.98:7999/',
+        url: 'http://192.168.12.247:7999/',
         processData: false,
         contentType:"text/plain",
         type: "POST",  // type should be POST
@@ -14,8 +14,8 @@ function loadStudy(studyViewer, viewportModel, study) {
         //dataType:"text/plain",
         success: function(response){
 
-            alert(response);
-            ShowStudyImage(response);
+            //alert(response);
+            ShowStudyImage(response, study);
         },
         error: function (jqXHR, exception) {
             var msg = '';
@@ -247,8 +247,18 @@ return false;
     //         useItemStack(0, 0);
     //
     // });
-    function ShowStudyImage(data) {
+    function ShowStudyImage(data, studyInfo) {
         data = JSON.parse(data);
+       data.patientName = studyInfo.patientName;
+        data.studyDate = studyInfo.studyDate;
+        data.modality = studyInfo.modality;
+        //data.modality = "CT";
+        data.studyId = studyInfo.studyId;
+        data.numImages = studyInfo.numImages;
+        data.studyDescription = studyInfo.studyId;
+        data.patientId = studyInfo.patientId;
+
+
         var imageViewer = new ImageViewer(studyViewer, viewportModel);
         imageViewer.setLayout('1x1'); // default layout
 
@@ -336,7 +346,7 @@ return false;
             // Add the series stack to the stacks array
             imageViewer.stacks.push(stack);
         });
-
+        cornerstone.StudyIDStackList.AddStackList(data.studyId, imageViewer.stacks);
         // Resize the parent div of the viewport to fit the screen
         var imageViewerElement = $(studyViewer).find('.imageViewer')[0];
         var viewportWrapper = $(imageViewerElement).find('.viewportWrapper')[0];
@@ -447,11 +457,25 @@ return false;
         }
         // Call resize viewer on window resize
         $(window).resize(function() {
-            resizeStudyViewer();
+            // if (windowsWith === undefined || windowsHeight === undefined)
+            // {
+            //     windowsWith = $(window).width;
+            //     windowsHeight = $(window).height;
+            // }
+            // else
+            // {
+            //     if(windowsWith !== $(window).width || windowsHeight !==$(window).height)
+            //     {
+            //         resizeStudyViewer();
+            //     }
+            // }
+
+           // alert("resize?");
+            //resizeStudyViewer(); //20170308 zwj 每次转换变慢 注释 影响未知
         });
         resizeStudyViewer();
         if (imageViewer.isSingle())
             useItemStack(0, 0);
 
     }
-}
+    }

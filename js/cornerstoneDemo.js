@@ -10,6 +10,9 @@ loadTemplate("templates/studyViewer.html", function(element) {
     studyViewerTemplate = element;
 });
 
+// var windowsWith; //for resize windows public variable zwj 20170308
+// var windowsHeight;//for resize windows public variable zwj 20170308
+
 //Get study list from the response json
 function ShowStudyList(data) {
   //解析返回的json字符串
@@ -35,7 +38,14 @@ $('#studyListData').html("");
     $(studyRowElement).click(function () {
 
       // Add new tab for this study and switch to it
-      var studyTab = '<li><a href="#x' + study.patientId + '" data-toggle="tab">' + study.patientName + '</a></li>';
+        //first if the tab is open do nothing
+        var NewTabId = "#x" + study.studyId;
+        var IsTab = $(NewTabId);
+        if (IsTab.length > 0)
+        {
+            return;
+        }
+      var studyTab = '<li><a href="#x' + study.studyId + '" data-toggle="tab">' + study.patientName + '<span class="close">&#10006;</span></a></li>';
       $('#tabs').append(studyTab);
 
       // Add tab content by making a copy of the studyViewerTemplate element
@@ -45,7 +55,7 @@ $('#studyListData').html("");
        studyViewerCopy.find('.imageViewer').append(viewportCopy);*/
 
 
-      studyViewerCopy.attr("id", 'x' + study.patientId);
+      studyViewerCopy.attr("id", 'x' + study.studyId);
       // Make the viewer visible
       studyViewerCopy.removeClass('hidden');
       // Add section to the tab content
@@ -54,10 +64,39 @@ $('#studyListData').html("");
       // Show the new tab (which will be the last one since it was just added
       $('#tabs a:last').tab('show');
 
+
       // Toggle window resize (?)
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $(window).trigger('resize');
       });
+
+        //添加一个关闭tab的按钮 zwj  20170306
+        $(".close").click(function () {
+            //alert("要关闭当前标签?");
+
+            var tabContentId = $(this).parent().attr("href");
+            //get studyID zwj 20170307
+            var DelStudyId = tabContentId.substring(2, tabContentId.length);
+            var stacklist = cornerstone.StudyIDStackList.GetStackID(DelStudyId);
+            cornerstone.imageCache.removeStudyImagePromise(stacklist.stacks);//.removeImagePromise(); //如何获取到图像的ID remove? 20170306 删除对应studyID的所有缓存图像
+            cornerstone.StudyIDStackList.RemoveStackIDList(DelStudyId); // 删除对应studyID的ImageID
+            $(this).parent().parent().remove(); //remove li of tab
+           $('#tabs a:last').tab('show');
+            $(tabContentId).remove(); //remove respective tab content
+
+        });
+
+        // tab switch
+        $("#tabs a").tab({
+            beforeActivate: function () {
+                alert("switching");
+                $(this).show();
+            },
+            activate: function () {
+                alert("switched");
+                $(this).hide();
+            }
+        });
 
       // Now load the study.json
       loadStudy(studyViewerCopy, viewportTemplate, study);
@@ -118,9 +157,12 @@ $('#studyListData').html("");
 
 // Show tabs on click
 $('#tabs a').click (function(e) {
+   // alsert("change tab");
   e.preventDefault();
   $(this).tab('show');
 });
+
+
 
 // Resize main
 function resizeMain() {

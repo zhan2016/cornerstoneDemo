@@ -15,36 +15,76 @@
                 <div class="text-center" >
                     <div class="btn-group">
                         <!-- WW/WL -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="WW/WC"><span class="fa fa-sun-o"></span></button>
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="窗宽窗位"><span class="fa fa-sun-o"></span></button>
+                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-container='body' data-toggle="dropdown" aria-expanded="false" data-placement="top" title="预置窗宽窗位"><span class="caret"></span></button>
+                            <ul class="pull-right dropdown-menu WW-choose" role="menu">
+                                <li><a href="#">肺窗</a></li>
+                                <li><a href="#">骨窗</a></li>
+                                <li><a href="#">1窗</a></li>
+                                <li><a href="#">2窗</a></li>
+                            </ul>
+                            </div>
                         <!-- Invert -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Invert"><span class="fa fa-adjust"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="反转"><span class="fa fa-adjust"></span></button>
                         <!-- Zoom -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Zoom"><span class="fa fa-search"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="缩放"><span class="fa fa-search"></span></button>
                         <!-- Pan -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Pan"><span class="fa fa-arrows"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="平移"><span class="fa fa-arrows"></span></button>
                         <!-- Stack scroll -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Stack Scroll"><span class="fa fa-bars"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="堆栈滚动"><span class="fa fa-bars"></span></button>
                         <!-- Length measurement -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Length Measurement"><span class="fa fa-arrows-v"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="直线测量"><span class="fa fa-arrows-v"></span></button>
                         <!-- Angle measurement -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Angle Measurement"><span class="fa fa-angle-left"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="角度测量"><span class="fa fa-angle-left"></span></button>
                         <!-- Pixel probe -->
                         <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Pixel Probe"><span class="fa fa-dot-circle-o"></span></button>
                         <!-- Elliptical ROI -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Elliptical ROI"><span class="fa fa-circle-o"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="椭圆"><span class="fa fa-circle-o"></span></button>
                         <!-- Rectangle ROI -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Rectangle ROI"><span class="fa fa-square-o"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="矩形"><span class="fa fa-square-o"></span></button>
                         <!-- Play clip -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Play Clip"><span class="fa fa-play"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="播放"><span class="fa fa-play"></span></button>
                         <!-- Stop clip -->
-                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Stop Clip"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="停止"><span class="fa fa-stop"></span></button>
+                        <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-container='body' data-toggle="dropdown" aria-expanded="false" data-placement="top" title="Layout"><span class="fa fa-th-large"></span></button>
                         <ul class="pull-right dropdown-menu choose-layout" role="menu">
                             <li><a href="#">1x1</a></li>
                             <li><a href="#">2x1</a></li>
                             <li><a href="#">1x2</a></li>
                             <li><a href="#">2x2</a></li>
-                        </ul>                      
+                        </ul>
+                            </div>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="左旋转"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="右旋转"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="上下反转"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="左右镜像"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="放大镜"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="保存图像"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="注释"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="CT值"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="查看头信息"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="伪彩色"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="恢复"><span class="fa fa-stop"></span></button>
+
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">文件名</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" name="FilePath" class="form-inline" id="FilePath" maxlength="512" placeholder="输入信息">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="CloseModal" type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

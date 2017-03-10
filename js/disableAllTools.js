@@ -14,5 +14,8 @@ function disableAllTools() {
         cornerstoneTools.zoomTouchDrag.deactivate(element);
         cornerstoneTools.panTouchDrag.deactivate(element);
         cornerstoneTools.stackScrollTouchDrag.deactivate(element);
+        cornerstoneTools.magnify.disable(element);
+        cornerstoneTools.magnify.deactivate(element);
+        cornerstoneTools.magnifyTouchDrag.disable(element);
     });
 }

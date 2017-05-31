@@ -1,0 +1,386 @@
+<div id="studyViewerTemplate" class="tab-pane active hidden" style="height:100%">
+
+    <div class="studyContainer" style="height:100%;overflow:hidden;">
+        <div class="studyRow row" style="height:100%">
+
+            <!-- Thumbnails -->
+            <div class="thumbnailSelector">
+                <div class="thumbnails list-group">
+                </div>
+            </div>
+
+            <!-- Viewer -->
+            <div class="viewer">
+                <!-- Toolbar -->
+                <div class="text-center">
+                    <div class="btn-group">
+                        <!-- WW/WL -->
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="窗宽窗位"><span class="fa fa-sun-o"></span></button>
+                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-container='body' data-toggle="dropdown" aria-expanded="false" data-placement="top" title="预置窗宽窗位"><span class="caret"></span></button>
+                            <ul class="pull-right dropdown-menu WW-choose" role="menu">
+                                <li><a href="#" id="wwfei">肺窗</a></li>
+                                <li><a href="#" id="wwgu">骨窗</a></li>
+                                <li><a href="#" id="wwtou">1窗</a></li>
+                                <li><a href="#" id="wwddd">2窗</a></li>
+                            </ul>
+                            </div>
+                        <!-- Invert -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="反转"><span class="fa fa-adjust"></span></button>
+                        <!-- Zoom -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="缩放"><span class="fa fa-search"></span></button>
+                        <!-- Pan -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="平移"><span class="fa fa-arrows"></span></button>
+                        <!-- Stack scroll -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="堆栈滚动"><span class="fa fa-bars"></span></button>
+                        <!-- Length measurement -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="直线测量"><span class="fa fa-arrows-v"></span></button>
+                        <!-- Angle measurement -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="角度测量"><span class="fa fa-angle-left"></span></button>
+                        <!-- Pixel probe -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="Pixel Probe"><span class="fa fa-dot-circle-o"></span></button>
+                        <!-- Elliptical ROI -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="椭圆"><span class="fa fa-circle-o"></span></button>
+                        <!-- Rectangle ROI -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="矩形"><span class="fa fa-square-o"></span></button>
+                        <!-- Play clip -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="播放"><span class="fa fa-play"></span></button>
+                        <!-- Stop clip -->
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="停止"><span><img src="icons/Move.png"></span></button><!--<span class="fa fa-stop"></span></button>-->
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-container='body' data-toggle="dropdown" aria-expanded="false" data-placement="top" title="Layout"><span class="fa fa-th-large"></span></button>
+                        <ul class="pull-right dropdown-menu choose-layout" role="menu">
+                            <li><a href="#">1x1</a></li>
+                            <li><a href="#">2x1</a></li>
+                            <li><a href="#">1x2</a></li>
+                            <li><a href="#">2x2</a></li>
+                        </ul>
+                            </div>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="左旋转"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="右旋转"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="上下反转"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="左右镜像"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="放大镜"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="保存图像"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="注释"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="CT值"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="查看头信息"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="光标"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="恢复"><span class="fa fa-stop"></span></button>
+                        <button type="button" class="btn btn-sm btn-default" data-container='body' data-toggle="tooltip" data-placement="bottom" title="伪彩色"><span class="fa fa-stop"></span></button>
+
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">文件名</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="text" name="FilePath" class="form-inline" id="FilePath" maxlength="512" placeholder="输入信息">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="CloseModal" type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="dropZone" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel1">头信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <button class="btn btn-success"
+                                        data-toggle="modal"
+                                        data-dismiss="modal" id="DicomInfoClose">关闭页面</button>
+                                <div class="panel panel-default ">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">病人信息</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Patient Name: <span data-dicom="x00100010"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Patient ID: <span data-dicom="x00100020"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Patient Birth Date: <span data-dicom="x00100030"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Patient Sex: <span data-dicom="x00100040"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">检查信息</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Study Description: <span data-dicom="x00081030"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Protocol Name: <span data-dicom="x00181030"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Accession #: <span data-dicom="x00080050"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Study Id: <span data-dicom="x00200010"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Study Date: <span data-dicom="x00080020"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Study Time: <span data-dicom="x00080030"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">序列信息</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Series Description: <span data-dicom="x0008103e"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Series #: <span data-dicom="x00200011"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Modality: <span data-dicom="x00080060"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Body Part: <span data-dicom="x00180015"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Series Date: <span data-dicom="x00080021"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Series Time: <span data-dicom="x00080031"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">实例信息</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Instance #: <span data-dicom="x00200013"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Acquisition #: <span data-dicom="x00200012"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Acquisition Date: <span data-dicom="x00080022"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Acquisition Time: <span data-dicom="x00080032"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Content Date: <span data-dicom="x00080023"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Content Time: <span data-dicom="x00080033"></span>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">图像信息</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Rows: <span data-dicomUint="x00280010"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Columns: <span data-dicomUint="x00280011"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Photometric Interpretation: <span data-dicom="x00280004"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Image Type: <span data-dicom="x00080008"></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Bits Allocated: <span data-dicomUint="x00280100"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Bits Stored: <span data-dicomUint="x00280101"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                HighBit: <span data-dicomUint="x00280102"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Pixel Representation (0=us): <span data-dicomUint="x00280103"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Rescale Slope: <span data-dicom="x00281053"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Rescale Intercept: <span data-dicom="x00281052"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Image Position Patient: <span data-dicom="x00200032"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Image Orientation Patient: <span data-dicom="x00200037"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Pixel Spacing: <span data-dicom="x00280030"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Samples Per Pixel: <span data-dicomUint="x00280002"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">设备信息</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Manufacturer: <span data-dicom="x00080070"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                Model: <span data-dicom="x00081090"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Station Name: <span data-dicom="x00081010"></span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                AE Title: <span data-dicom="x00020016"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Institution Name: <span data-dicom="x00080080"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Software Version: <span data-dicom="x00181020"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Implementation Version Name: <span data-dicom="x00020013"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">UIDS</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Study UID: <span data-dicom="x0020000d"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Series UID: <span data-dicom="x0020000e"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Instance UID: <span data-dicom="x00080018"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                SOP Class UID: <span data-dicom="x00080016"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Transfer Syntax UID: <span data-dicom="x00020010"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                Frame of Reference UID: <span data-dicom="x00200052"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Viewer -->
+                <div class="imageViewer">
+
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>

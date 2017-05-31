@@ -13,9 +13,12 @@ function setupViewport(element, stack, image) {
     cornerstoneTools.touchInput.enable(element);
 
     // Enable all tools we want to use with this element
-    cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
+
+    cornerstoneTools.SelectElement.activate(element, 1); // 选择工具是左键默认的
+   // cornerstoneTools.zoom.activate(element, 5); //缩放工具是左右键同时的默认事件
+    cornerstoneTools.wwwc.activate(element, 4); // ww/wc is the default tool for right mouse button
     cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
-    cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
+    //cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
     cornerstoneTools.probe.enable(element);
     cornerstoneTools.length.enable(element);
     cornerstoneTools.ellipticalRoi.enable(element);

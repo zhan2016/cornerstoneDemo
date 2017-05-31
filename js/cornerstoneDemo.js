@@ -38,31 +38,69 @@ $('#studyListData').html("");
     $(studyRowElement).click(function () {
 
       // Add new tab for this study and switch to it
-        //first if the tab is open do nothing
+        // if the tab is open do nothing
         var NewTabId = "#x" + study.studyId;
         var IsTab = $(NewTabId);
         if (IsTab.length > 0)
         {
             return;
         }
+
+
+
+
       var studyTab = '<li><a href="#x' + study.studyId + '" data-toggle="tab">' + study.patientName + '<span class="close">&#10006;</span></a></li>';
-      $('#tabs').append(studyTab);
+      //var tabCount = $("#tabs").find('li').count;
+        var tabCount2 = $("#tabs").find('li').length;
+        var studyViewerCopy;
+        //console.log("tabs is" + tabCount);
+        console.log("tabs is" + tabCount2);
+        if (tabCount2 === 1 || tabCount2 === undefined) { //if tabcount === 1 with no image tab add a tab
 
-      // Add tab content by making a copy of the studyViewerTemplate element
-      var studyViewerCopy = studyViewerTemplate.clone();
 
-      /*var viewportCopy = viewportTemplate.clone();
-       studyViewerCopy.find('.imageViewer').append(viewportCopy);*/
+            $('#tabs').append(studyTab);
+
+            // Add tab content by making a copy of the studyViewerTemplate element
+            studyViewerCopy = studyViewerTemplate.clone();
+
+            /*var viewportCopy = viewportTemplate.clone();
+             studyViewerCopy.find('.imageViewer').append(viewportCopy);*/
 
 
-      studyViewerCopy.attr("id", 'x' + study.studyId);
-      // Make the viewer visible
-      studyViewerCopy.removeClass('hidden');
-      // Add section to the tab content
-      studyViewerCopy.appendTo('#tabContent');
+            studyViewerCopy.attr("id", 'x' + study.studyId);
+            // Make the viewer visible
+            studyViewerCopy.removeClass('hidden');
+            // Add section to the tab content
+            studyViewerCopy.appendTo('#tabContent');
+        }
+        else // if tabcount === 2 or ther replace the image tab
+        {
+            //$('#tabs a:last').parent().remove(); //remove li of tab
 
-      // Show the new tab (which will be the last one since it was just added
-      $('#tabs a:last').tab('show');
+            var tabContentId = $('#tabs a:last').attr("href");
+            if (tabContentId !== '#studyList') {
+                RemoveAtab(tabContentId);
+                $('#studyViewerTemplate').empty();
+            }
+            console.log('tabId is ' + tabContentId);
+            //$('#tabs a:last').remove();
+            $('#tabs').append(studyTab);
+
+            // Add tab content by making a copy of the studyViewerTemplate element
+            studyViewerCopy = studyViewerTemplate.clone();
+
+            studyViewerCopy.attr("id", 'x' + study.studyId);
+            // Make the viewer visible
+            studyViewerCopy.removeClass('hidden');
+            // Add section to the tab content
+
+            studyViewerCopy.appendTo('#tabContent');
+        }
+
+            // Show the new tab (which will be the last one since it was just added
+            $('#tabs a:last').tab('show');
+
+
 
 
       // Toggle window resize (?)
@@ -78,8 +116,10 @@ $('#studyListData').html("");
             //get studyID zwj 20170307
             var DelStudyId = tabContentId.substring(2, tabContentId.length);
             var stacklist = cornerstone.StudyIDStackList.GetStackID(DelStudyId);
-            cornerstone.imageCache.removeStudyImagePromise(stacklist.stacks);//.removeImagePromise(); //如何获取到图像的ID remove? 20170306 删除对应studyID的所有缓存图像
-            cornerstone.StudyIDStackList.RemoveStackIDList(DelStudyId); // 删除对应studyID的ImageID
+            if (stacklist !== undefined) {
+                cornerstone.imageCache.removeStudyImagePromise(stacklist.stacks);//.removeImagePromise(); //如何获取到图像的ID remove? 20170306 删除对应studyID的所有缓存图像
+                cornerstone.StudyIDStackList.RemoveStackIDList(DelStudyId); // 删除对应studyID的ImageID
+            }
             $(this).parent().parent().remove(); //remove li of tab
            $('#tabs a:last').tab('show');
             $(tabContentId).remove(); //remove respective tab content
@@ -155,11 +195,25 @@ $('#studyListData').html("");
 // });
 
 
+function RemoveAtab(tabContentId) {
+    var DelStudyId = tabContentId.substring(2, tabContentId.length);
+    var stacklist = cornerstone.StudyIDStackList.GetStackID(DelStudyId);
+    if (stacklist !== undefined) {
+        cornerstone.imageCache.removeStudyImagePromise(stacklist.stacks);//.removeImagePromise(); //如何获取到图像的ID remove? 20170306 删除对应studyID的所有缓存图像
+        cornerstone.StudyIDStackList.RemoveStackIDList(DelStudyId); // 删除对应studyID的ImageID
+    }
+   $(this).parent().parent().remove(); //remove li of tab
+    $(tabContentId).remove(); //remove respective tab content
+    $('#tabs').remove(tabContentId);
+   $('#tabs a:last').remove();
+
+}
 // Show tabs on click
 $('#tabs a').click (function(e) {
-   // alsert("change tab");
+   //alert("change tab");
   e.preventDefault();
   $(this).tab('show');
+
 });
 
 

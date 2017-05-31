@@ -32,6 +32,10 @@
     }
   </style>
 
+  <!--一些启动配置 MirthServer zwj20170316-->
+  <script type="text/javascript">
+    var ServerConfig = "http://192.168.111.1:7999/"
+  </script>
 
 </head>
 
@@ -42,7 +46,7 @@
     <nav class="myNav navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="http://www.medvision.com.cn/cn/solutions.asp?nid=12&s=1">天健影像诊断系统</a>
+          <a class="navbar-brand" href="#">天健跨平台影像诊断系统</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a id="help" href="#" class="button hidden-xs">软件使用帮助</a></li>
@@ -147,6 +151,10 @@
 <!-- Include JQuery UI for drag/drop -->
 <script src="lib/jquery-ui.min.js"></script>
 
+  <!-- include the hammer.fakemultitouch so we can test with a mouse -->
+  <script src="lib/touch-emulator.js"></script>
+  <script>TouchEmulator();</script>
+
 <!-- Include JQuery Hammerjs adapter for mobile touch-->
 <script src="lib/hammer.min.js"></script>
 
@@ -191,7 +199,9 @@
 <script src="js/about.js"></script>
 <script src="js/setupViewportOverlays.js"></script>
 <script src="js/cornerstoneDemo.js"></script>
+  <script src="js/ParaserURL.js"></script>
   <script type="text/javascript">
+
     $(document).ready(function() {
 
       $('input[name="dataPick"]').daterangepicker(
@@ -223,62 +233,13 @@
               }
       );
     });
-    /*$("#RequestForm").submit(function() {
-      var formjson = JSON.stringify($('#RequestForm').serializeArray());
-      event.preventDefault();
-      $.ajax({
-        url: 'http://localhost:7999/',
-        processData: false,
-        contentType:"text/plain",
-        type: "POST",  // type should be POST
-        data: formjson, // send the string directly
-        dataType:"text/plain",
-        success: function(response){
 
-          alert("success");
-        },
-        error: function (jqXHR, exception) {
-          var msg = '';
-          if (jqXHR.status === 0) {
-            msg = 'Not connect.\n Verify Network.';
-          } else if (jqXHR.status == 404) {
-            msg = 'Requested page not found. [404]';
-          } else if (jqXHR.status == 500) {
-            msg = 'Internal Server Error [500].';
-          } else if (exception === 'parsererror') {
-            msg = 'Requested JSON parse failed.';
-          } else if (exception === 'timeout') {
-            msg = 'Time out error.';
-          } else if (exception === 'abort') {
-            msg = 'Ajax request aborted.';
-          } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseText;
-          }
-          alert(msg);
-          //$('#post').html(msg);
-        },
-      });
-      return false;
-      /*
-      // We bind the FormData object and the form element
-      var FD  = new FormData(RequestForm);
-      var formjson = JSON.stringify($('#RequestForm').serializeArray());
-      var jstoxml = new
-      var formxml = toXML(formjson,{header: false, indent: '  '});
-       var xmlhttp = new XMLHttpRequest();
-
-      xmlhttp.open("POST","http://localhost:7999/",true);
-      xmlhttp.setRequestHeader('Content-type', 'text/xml');
-      xmlhttp.send(FD);
-      return false;
-
-    });*/
 
     $("#Submit").click(function(e) {
       var formjson = JSON.stringify($('#RequestForm').serializeArray());
       e.preventDefault();
       $.ajax({
-        url: 'http://192.168.12.247:7999/',
+        url: ServerConfig,
         processData: false,
         contentType:"text/plain",
         type: "POST",  // type should be POST

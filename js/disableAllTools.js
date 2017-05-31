@@ -2,8 +2,10 @@
 function disableAllTools() {
     forEachViewport(function(element) {
         cornerstoneTools.wwwc.disable(element);
+        cornerstoneTools.zoom.disable(element);
+        cornerstoneTools.wwwc.activate(element, 4); // ww/wc is the default tool for right mouse button
         cornerstoneTools.pan.activate(element, 2); // 2 is middle mouse button
-        cornerstoneTools.zoom.activate(element, 4); // 4 is right mouse button
+       //cornerstoneTools.zoom.activate(element, 4); // 4 is right mouse button
         cornerstoneTools.probe.deactivate(element, 1);
         cornerstoneTools.length.deactivate(element, 1);
         cornerstoneTools.angle.deactivate(element, 1);
@@ -17,5 +19,8 @@ function disableAllTools() {
         cornerstoneTools.magnify.disable(element);
         cornerstoneTools.magnify.deactivate(element);
         cornerstoneTools.magnifyTouchDrag.disable(element);
+        cornerstoneTools.arrowAnnotate.disable(element);
+        cornerstoneTools.arrowAnnotateTouch.deactivate(element);
+        cornerstoneTools.referenceLines.tool.disable(element);
     });
 }
